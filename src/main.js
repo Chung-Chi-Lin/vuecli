@@ -1,4 +1,6 @@
 import { createApp } from 'vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import {
   Field, Form, ErrorMessage, defineRule, configure,
 } from 'vee-validate';
@@ -17,11 +19,14 @@ configure({
 });
 setLocale('zh_TW');
 
-const app = createApp(App).use(router);
+const app = createApp(App);
+
 // eslint-disable-next-line vue/multi-word-component-names
 app.component('Form', Form);
 // eslint-disable-next-line vue/multi-word-component-names
 app.component('Field', Field);
 app.component('ErrorMessage', ErrorMessage);
 
+app.use(VueAxios, axios);
+app.use(router);
 app.mount('#app');
